@@ -1,4 +1,15 @@
 <?php
+// add_action('muplugins_loaded', function(){
+// 	echo 'muplugins_loaded<br/>';
+// });
+
+// add_action('registered_taxonomy', function(){
+// 	echo 'registered_taxonomy<br/>';
+// });
+
+// add_action('registered_post_type', function(){
+// 	echo 'registered_post_type<br/>';
+// });
 /**
  * @package Hello_Dolly
  * @version 1.6
@@ -69,7 +80,7 @@ function dolly_css() {
 	#dolly {
 		float: $x;
 		padding-$x: 15px;
-		padding-top: 5px;		
+		padding-top: 5px;
 		margin: 0;
 		font-size: 11px;
 	}

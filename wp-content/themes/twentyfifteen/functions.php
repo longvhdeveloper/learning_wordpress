@@ -1,4 +1,31 @@
 <?php
+
+// add_action('after_setup_theme', function(){
+// 	echo 'after_setup_theme<br/>';
+// });
+
+// add_action('init', function(){
+// 	echo 'init<br/>';
+// });
+
+// add_action('wp_loaded', function(){
+// 	echo 'wp_loaded<br/>';
+// });
+
+// add_filter('body_class', function($class){
+// 	$class[] = 'sexy_man';
+// 	$class[] = 'sexy_girl';
+// 	return $class;
+// });
+
+// add_filter('the_title', function($title){
+// 	return '<div style="color:red">' . $title . ' - Jackie Wu</div>';
+// });
+
+// add_action('wp_head', function(){
+// 	echo '<script type="text/javascript">alert("hello");</script>';
+// });
+
 /**
  * Twenty Fifteen functions and definitions
  *
