@@ -82,39 +82,97 @@ function demo()
 }
 demo();*/
 
-class QHWidget extends WP_Widget
-{
-    public function __construct()
-    {
-        parent::__construct(
-            'qhwidget',
-            'Widget Demo',
-            array(
-                'description' => 'Day la widget demo'
-            )
-        );
-    }
-    //giao dien ben ngoai
-    public function widget($args, $instance)
-    {
-        $title = !empty($instance['title']) ? $instance['title'] : '';
-        echo '<aside id="'.$args['widget_id'].'" class="widget widget_meta"><h2 class="widget-title">'.$title.'</h2></aside>';
-    }
-    //giao dien form
-    public function form($instance)
-    {
-        $title = !empty($instance['title']) ? $instance['title'] : '';
-        echo '<p><label for="'.$this->get_field_id('title').'">Title:</label> <input class="widefat" id="'.$this->get_field_id('title').'" name="'.$this->get_field_name('title').'" type="text" value="'.$title.'"></p>';
-    }
-    //luu lai thong tin widget
-    public function update($new_instance, $old_instance)
-    {
-        $instance = array();
-        $instance['title'] = (!empty($new_instance['title']) ? $new_instance['title'] : '');
-        return $instance;
-    }
-}
+// class QHWidget extends WP_Widget
+// {
+//     public function __construct()
+//     {
+//         parent::__construct(
+//             'qhwidget',
+//             'Widget Demo',
+//             array(
+//                 'description' => 'Day la widget demo'
+//             )
+//         );
 
-add_action('widgets_init', function(){
-    register_widget('QHWidget');
-});
+//         add_action('wp_ajax_getMessage', array($this, 'getMessage'));
+//         add_action('wp_ajax_nopriv_getMessage', array($this, 'getMessage'));
+//     }
+//     //giao dien ben ngoai
+//     public function widget($args, $instance)
+//     {
+//         $data = array(
+//             'a' => 1,
+//             'b' => 2,
+//         );
+//         wp_register_script('qhdemo_js', plugin_dir_url(__FILE__) . '/scripts/function.js');
+//         wp_enqueue_script('qhdemo_js');
+
+//         wp_localize_script('qhdemo_js', 'qhdemo', array(
+//             'url' => admin_url('admin-ajax.php'),
+//             'list' => $data
+//         ));
+
+//         $title = !empty($instance['title']) ? $instance['title'] : '';
+//         echo '<aside id="'.$args['widget_id'].'" class="widget widget_meta"><h2 class="widget-title">'.$title.'</h2>
+//         <a href="javascript:void(0)" id="clickme">Load Data</a>
+//         <p id="message"></p>
+//         </aside>';
+//     }
+//     //giao dien form
+//     public function form($instance)
+//     {
+//         $title = !empty($instance['title']) ? $instance['title'] : '';
+//         echo '<p><label for="'.$this->get_field_id('title').'">Title:</label> <input class="widefat" id="'.$this->get_field_id('title').'" name="'.$this->get_field_name('title').'" type="text" value="'.$title.'"></p>';
+//     }
+//     //luu lai thong tin widget
+//     public function update($new_instance, $old_instance)
+//     {
+//         $instance = array();
+//         $instance['title'] = (!empty($new_instance['title']) ? $new_instance['title'] : '');
+//         return $instance;
+//     }
+
+//     public function getMessage()
+//     {
+//         //$id = $_POST['id'];
+//         $id = rand(1,3);
+//         $message = '';
+//         switch ($id) {
+//             case 1:
+//                 $message = 'First';
+//                 break;
+
+//             case 2:
+//                  $message = 'Second';
+//                 break;
+
+//             case 3:
+//                  $message = 'Third';
+//                 break;
+
+//             default:
+//                 $message = 'Zero';
+//                 break;
+//         }
+
+//         wp_send_json_success(array(
+//             'message' => $message,
+//         ));
+//     }
+// }
+
+// add_action('widgets_init', function(){
+//     register_widget('QHWidget');
+// });
+
+//add_shortcode('qhshortcode', function($atts){
+//    if (isset($_GET['content'])) {
+//        $atts['content'] = (string)$_GET['content'];
+//    }
+//    $atts = shortcode_atts(array(
+//        'content' => 'hello world',
+//        'color' => 'red'
+//    ), $atts);
+//    echo '<div style="color:'.$atts['color'].'">'.$atts['content'].'</div>';
+//});
+
