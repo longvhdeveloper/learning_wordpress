@@ -176,3 +176,67 @@ demo();*/
 //    echo '<div style="color:'.$atts['color'].'">'.$atts['content'].'</div>';
 //});
 
+add_action('admin_menu', function(){
+    add_menu_page('Setting Demo', 'QH Demo', 'manage_options', 'qhsetting', 'createSettingPage');
+});
+
+function createSettingPage()
+{
+    require(plugin_dir_path(__FILE__) . '/views/qhsetting.php');
+}
+
+$option = get_option('qhSetting');
+$option2 = get_option('qhSetting2');
+function setupSetting()
+{
+    global $option;
+    global $option2;
+    register_setting('qhSettingGroup', 'qhSetting', 'saveData');
+    
+    register_setting('qhSettingGroup', 'qhSetting2', 'saveData');
+    
+    add_settings_section('qhSettingGeneral', 'General', function(){
+        echo 'Vui long dien day du thong tin';
+    }, 'qhsetting');
+    
+    add_settings_field('qhSettingTitle', 'Title', function() use ($option){
+        echo '<input name="qhSetting[qhSettingTitle]" type="text" class="regular-text" value="'.(!empty($option['qhSettingTitle']) ? $option['qhSettingTitle'] : '').'">';
+    }, 'qhsetting', 'qhSettingGeneral');
+    
+    add_settings_section('qhSettingGeneral2', 'General2', function(){
+        echo 'Vui long dien day du thong tin';
+    }, 'qhsetting');
+    
+    add_settings_field('qhSettingTitle2', 'Title2', function() use ($option2){
+        echo '<input name="qhSetting2[qhSettingTitle2]" type="text" class="regular-text" value="'.(!empty($option2['qhSettingTitle2']) ? $option2['qhSettingTitle2'] : '').'">';
+    }, 'qhsetting', 'qhSettingGeneral2');
+    
+}
+
+add_action('admin_init', function() {
+    setupSetting();
+});
+
+function saveData($input)
+{
+    return $input;
+}
+
+function setButton() {
+    echo '<script type="text/javascript">'
+    . 'QTags.addButton("qhbutton", "QH Button", "<open></open>", "", "Day la button demo", 1)'
+    . '</script>';
+    
+    echo '<script type="text/javascript">'
+    . 'QTags.addButton("qhbuttonshortcode", "QH Button Shortcode", "[qhshortcode]", "", "Day la button shortcode demo", 1)'
+    . '</script>';
+    
+    echo '<script type="text/javascript">'
+    . 'QTags.addButton("qhbutton2", "QH Button2",test ,"", "", "Day la button demo", 2);'
+            . 'function test() {'
+            . 'alert("hello")'
+            . '}'
+    . '</script>';
+}
+
+add_action('admin_print_footer_scripts', 'setButton');
